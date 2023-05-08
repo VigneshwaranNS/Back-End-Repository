@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +33,7 @@ public class LoginController {
 	@Autowired
 	Gson gson;
 	
-	@GetMapping("/getEmployee")
+	@PostMapping("/getEmployee")
 	public ResponseEntity<String> getEmployee(@RequestBody Employee employee){
 		
 		String response_data= "";
@@ -42,7 +43,7 @@ public class LoginController {
 
 			List<Employee> response = login_service.getEmployeeRecordService(employee);
 			
-			response_data = "{\"success\":"+response_data+"}";
+			response_data = "{\"success\":"+gson.toJson(response)+"}";
 			
 			log.info("Action - getEmployeeRecordService, Response - "+gson.toJson(response));
 

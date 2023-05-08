@@ -21,7 +21,8 @@ public class LoginRepository {
 	
 	private static final Logger log = LoggerFactory.getLogger(LoginRepository.class);
 
-	JdbcTemplate jdbcTemplate= new JdbcTemplate();
+	@Autowired
+    private JdbcTemplate jdbcTemplate;
 	
 	Gson gson = new Gson();
 	
@@ -31,13 +32,11 @@ public class LoginRepository {
 		
 		BeanPropertyRowMapper<Employee> rowMapper = new BeanPropertyRowMapper<Employee>(Employee.class);
 		
-		Connection con;
-		try {
-			con = jdbcTemplate.getDataSource().getConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		/*
+		 * Connection con; try { con = jdbcTemplate.getDataSource().getConnection(); }
+		 * catch (SQLException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); }
+		 */
 		
 		String employee_sql = "select * from employee";
 		
